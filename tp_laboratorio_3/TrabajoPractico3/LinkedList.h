@@ -34,7 +34,7 @@ struct LinkedList
 
 
 //Publicas
-LinkedList* ll_newLinkedList(void);
+LinkedList* ll_newLinkedList(void); //Es el constructor se crea la struct de forma dinamica y le da valores inciales
 int ll_len(LinkedList* this);
 Node* test_getNode(LinkedList* this, int nodeIndex);
 int test_addNode(LinkedList* this, int nodeIndex,void* pElement);
