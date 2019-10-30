@@ -34,7 +34,7 @@ return emp;
 
 void employee_delete()
 {
-
+free();
 }
 
 int employee_setId(Employee* this,int id)
