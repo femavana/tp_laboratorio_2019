@@ -1,5 +1,5 @@
 main.o: ../main.c ../getInput.h ../LinkedList.h ../Controller.h \
-  ../Employee.h
+ ../Employee.h
 
 ../getInput.h:
 
