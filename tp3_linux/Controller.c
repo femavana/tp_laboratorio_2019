@@ -101,7 +101,36 @@ int controller_loadFromBinary(char* path,LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int ret=-1;
+    int size;
+    Employee* emp;
+    int id;
+    char nombre[128];
+    int horasTrabajadas;
+    int sueldo;
+	
+     emp= employee_new();
+     size=ll_len(emp);
+	
+      if(emp!=NULL && size>0 )
+	{
+	   if(ll_isEmpty(emp)==1)
+	   {
+            getInt(id,"\nIngrese el ID del empleado: ","Error!!.Ingrese solo numeros\n",1,size,2);
+	    employee_getId(emp,id);
+	    getName(nombre,"\nIngrese el nombre de la empresa: ","Error!!.\n",3,128,2);
+	    employee_getNombre(emp,nombre);
+            getInt(horasTrabajadas,"\nIngrese las horas Trabajadas del empleado: ","Error!!.Ingrese solo numeros\n",1,size,2);
+	    employee_getHorasTrabajadas(emp,horasTrabajadas);   
+	    getInt(sueldo,"\nIngrese el sueldo del empleado: ","Error!!.Ingrese solo numeros\n",1,size,2); 
+	    employee_getSueldo(emp,sueldo);   
+	   }
+	   else
+	   {
+	   printf("\nNo hay mas lugar!!!");
+	   }
+    }
+return ret;
 }
 
 /** \brief Modificar datos de empleado
