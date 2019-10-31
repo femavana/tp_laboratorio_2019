@@ -21,7 +21,7 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
     {
      while(!feof(pFile))
 	{
-      Employee* auxEmp;
+        Employee* auxEmp;
 	  fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",buffer[0],buffer[1],buffer[2],buffer[3]);
 	  auxEmp= employee_newParametros(buffer[0],buffer[1],buffer[2],buffer[3]);
 	  if(auxEmp !=NULL)
@@ -42,6 +42,21 @@ return ret;
  */
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
+	int ret=-1;
+	char buffer[4][54];
 
-    return 1;
+	if(pFile !=NULL && pArrayListEmployee !=NULL)
+    {
+     while(!feof(pFile))
+	{
+        Employee* auxEmp;
+	  fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",buffer[0],buffer[1],buffer[2],buffer[3]);
+	  auxEmp= employee_newParametros(buffer[0],buffer[1],buffer[2],buffer[3]);
+	  if(auxEmp !=NULL)
+	  {
+	  ll_add(pArrayListEmployee,auxEmp);
+	  }
+    }
+    }
+return ret;
 }
