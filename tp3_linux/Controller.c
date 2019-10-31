@@ -29,9 +29,10 @@ void subMenuChange()
 {
 	printf("\n");
 	printf("__CHANGE___________________________");
-	printf("\n1-Cambiar direccion");
-	printf("\n2-Cambiar localidad");
-	printf("\n3-Volver a menu principal");
+	printf("\n1-Cambiar_nombre");
+	printf("\n2-Cambiar_horas_trabajas");
+	printf("\n3-Cambiar_sueldo");
+	printf("\n4-Volver a menu principal");
 	printf("\n_________________________________");
 }
 
@@ -103,27 +104,28 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     int ret=-1;
     int size;
-    Employee* emp;
     int id;
     char nombre[128];
     int horasTrabajadas;
     int sueldo;
 	
-     emp= employee_new();
+     Employee* emp= employee_new();;
      size=ll_len(emp);
 	
       if(emp!=NULL && size>0 )
 	{
-	   if(ll_isEmpty(emp)==1)
+	   if(ll_isEmpty(emp)==0)
 	   {
             getInt(id,"\nIngrese el ID del empleado: ","Error!!.Ingrese solo numeros\n",1,size,2);
 	    employee_getId(emp,id);
-	    getName(nombre,"\nIngrese el nombre de la empresa: ","Error!!.\n",3,128,2);
+	    getName(nombre,"\nIngrese el nombre del empleado: ","Error!!.\n",3,128,2);
 	    employee_getNombre(emp,nombre);
             getInt(horasTrabajadas,"\nIngrese las horas Trabajadas del empleado: ","Error!!.Ingrese solo numeros\n",1,size,2);
 	    employee_getHorasTrabajadas(emp,horasTrabajadas);   
 	    getInt(sueldo,"\nIngrese el sueldo del empleado: ","Error!!.Ingrese solo numeros\n",1,size,2); 
-	    employee_getSueldo(emp,sueldo);   
+	    employee_getSueldo(emp,sueldo);
+	    ll_add(pArrayListEmployee,emp)
+	    employee_delete(emp);
 	   }
 	   else
 	   {
@@ -142,7 +144,51 @@ return ret;
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int ret=-1;
+    int size;
+    int option;
+    int id;
+    int index;
+    char nombre[128];
+    int horasTrabajadas;
+    int sueldo;
+          
+	  Employee* auxEmp;
+          size=ll_len(auxEmp);
+          if(auxEmp!=NULL && size>0 )
+    	   {
+	     getInt(id,"\nIngrese el id del empleado a editar: ","Error!!.Ingrese solo numeros\n",1,size,2); 
+	     if(index=ll_indexOf(auxEmp,id)!=-1)
+    	    {
+		   do{
+        	   subMenuChange();
+        	   getInt(&option,"\n\nIngrese una opcion:","\n\tERROR!!.Opcion invalida\n",1,4,2);
+        	   switch(option)
+        	  {
+        	  case 1:
+        	   printf("\n__Cambiar_nombre__");
+        	   getName(nombre,"\nIngrese el nuevo nombre del empleado: ","Error!!.\n",3,128,2);
+	           employee_getNombre(auxEmp[index],nombre);
+        	   break;
+        	  case 2:
+        	   printf("\n__Cambiar_horas_trabajadas__");
+                   getInt(horasTrabajadas,"\nIngrese la nueva cantidad de horas Trabajadas del empleado: ","Error!!.Ingrese solo numeros\n",1,size,2);
+	           employee_getHorasTrabajadas(auxEmp[index],horasTrabajadas);
+	           break;
+	          case 3:
+        	   printf("\n__Cambiar_sueldo__");
+                   getInt(sueldo,"\nIngrese el nuevo sueldo del empleado: ","Error!!.Ingrese solo numeros\n",1,size,2); 
+	           employee_getSueldo(auxEmp[index],sueldo);  
+        	   break;
+        	  }
+		    }while(option!=4);
+            }
+    	    else
+            {
+        	printf("No existe el id ingresado!!");
+            }
+       }
+return ret;	
 }
 
 /** \brief Baja de empleado
@@ -154,6 +200,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
+	
     return 1;
 }
 
@@ -165,8 +212,26 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  *
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
-{
-    return 1;
+{      
+int ret=-1;
+int i;
+int size;
+
+size=ll_len(pArrayListEmployee);
+	if(pArrayListEmployee!= NULL && size > 0)
+	{
+		printf("\n_______________________________EMPLOYEES____________________________________");
+	for(i=0;i<size;i++)
+       {
+	   if(ll_isEmpty(pArrayListEmployee)==0)
+		{
+		printf("\nID:%d \nNombre:%s \nHorasTrabajadas:%d \nSueldo:%d\n",
+			pArrayListEmployee->id,pArrayListEmployee->nombre,
+			pArrayListEmployee->horasTrabajadas,pArrayListEmployee->sueldo);
+		printf("____________________________________________________________________\n");
+		}
+	}
+return ret;
 }
 
 /** \brief Ordenar empleados
@@ -203,6 +268,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
+	
     return 1;
 }
 
