@@ -44,15 +44,16 @@ int controller_loadFromText(char* path,LinkedList* pArrayListEmployee)
 	if((pFile=fopen(path,"r"))==NULL)
 	{
 	printf("\nEl archivo no puede ser abierto");
-    ret=-1;
+        ret=-1;
 	}
-	else
+	else if(parser_EmployeeFromText(pFile,pArrayListEmployee)==0)
 	{
 	printf("\nEl archivo se abrio correctamente");
 	}
 	if((fclose(pFile))==-1)
 	{
 	printf("\nNo se pudo cerrar el archivo");
+	ret=-2
 	}
 	else
 	{
@@ -67,19 +68,21 @@ int controller_loadFromBinary(char* path,LinkedList* pArrayListEmployee)
 	int ret=0;
 	if(path !=NULL && pArrayListEmployee !=NULL)
 	{
-	FILE *pFile;
+	FILE *pFile; 
+	Employee* auxEmp;
 	if((pFile=fopen(path,"rb"))==NULL)
 	{
 	printf("\nEl archivo no puede ser abierto");
-    ret=-1;
+        ret=-1;
 	}
-	else
+	else if(parser_EmployeeFromBinary(pFile,pArrayListEmployee)==0)
 	{
 	printf("\nEl archivo se abrio correctamente");
 	}
 	if((fclose(pFile))==-1)
 	{
 	printf("\nNo se pudo cerrar el archivo");
+	ret=-2;
 	}
 	else
 	{
