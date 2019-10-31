@@ -255,8 +255,22 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
 {
-
-    return 1;
+FILE *parch;
+char texto[ ]="Prueba de escritura";
+int cant , longi;
+if((parch=fopen("prueba.txt","w"))==NULL) //Se abre en modo escritura
+{
+printf("\nEl archivo no puede ser abierto");
+exit (1);
+}
+longi=strlen (texto );
+cant=fwrite ( texto , sizeof ( char ) , longi , parch ); //Se escribe al archivo
+if (cant<longi)
+printf("\nError al escribir el archivo");
+else
+printf("\nSe escribieron %d caracteres", cant);
+fclose(parch);
+return 0;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo binario).
@@ -268,8 +282,17 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-	
-    return 1;
+FILE *bin;
+struct a pers;
+bin=fopen("bin.dat","wb");
+printf("\nIngrese el nombre: ");
+gets(pers.nombre);
+printf("Ingrese la edad: ");
+scanf("%d",&pers.edad);
+fflush(stdin);
+fwrite(&pers,sizeof(pers),1,bin);
+fclose(bin);
+}
 }
 
 
