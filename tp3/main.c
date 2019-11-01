@@ -26,31 +26,31 @@ int main()
     			break;
     		case 3:
     		    printf("\n\t______Alta_de_empleado_________________________________");
-    		    controller_addEmployee(listaEmpleados);
+    //		    controller_addEmployee(listaEmpleados);
     		    break;
     		case 4:
     		    printf("\n\t______Modificar_dato_de_empleado_________________________________");
-    		    controller_editEmployee(listaEmpleados);
+    //		    controller_editEmployee(listaEmpleados);
     		    break;
     		case 5:
     			printf("\n\t______Baja_de_empleado_________________________________");
-    			controller_removeEmployee(listaEmpleados);
+    //			controller_removeEmployee(listaEmpleados);
     			break;
     		case 6:
     			printf("\n_________Listar_empleados__________________ ");
-    			controller_ListEmployee(listaEmpleados);
+    //			controller_ListEmployee(listaEmpleados);
     			break;
     		case 7:
     			printf("\n\t________Ordenar_empleados____________________________");
-    			controller_sortEmployee(listaEmpleados);
+    //			controller_sortEmployee(listaEmpleados);
     			break;
     		case 8:
     			printf("\n\t________Guardar_datos_de_empleados_en_archivo-dataTexto.csv(modo texto)____________________________");
-    			controller_saveAsText("dataTexto.csv",listaEmpleados);
+    //			controller_saveAsText("data.csv",listaEmpleados);
     			break;
     		case 9:
     			 printf("\n\t_______Guardar_datos_de_empleados_en_archivo-dataBinario.csv(modo binario)__________________");
-    			 controller_saveAsBinary("dataBin.csv",listaEmpleados);
+    //			 controller_saveAsBinary("data.csv",listaEmpleados);
     		     break;
     		}
     	}while(option!=10);

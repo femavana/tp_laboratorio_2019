@@ -23,8 +23,7 @@ void menu()
 	printf("\n8-Guardar los datos de los empleados en el archivo data.csv (modo texto).");
 	printf("\n9-Guardar los datos de los empleados en el archivo data.csv (modo binario).");
 	printf("\n10-Salir");
-	printf("\n_________________");
-
+	printf("\n____________________________________ ");
 }
 
 void subMenuChange()
@@ -124,6 +123,7 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
         employee_setHorasTrabajadas(auxEmp,auxHorasTrabajadas);
 	    getInt(&auxSueldo,"\nIngrese el sueldo del empleado: ","Error!!.Ingrese solo numeros\n",1,size,2);
 	    employee_setSueldo(auxEmp,auxSueldo);
+	    employee_newParametros(auxId,auxNombre,auxHorasTrabajadas,auxSueldo);
 	    employee_delete(auxEmp);
 	    ret=0;
 	   }
@@ -276,35 +276,14 @@ return 0;
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-	int ret=0;
-	int i;
-	int size;
-	Employee* auxEmp;
-	FILE *pFile;
-
-	if(path !=NULL && pArrayListEmployee !=NULL)
-	{
-	if((pFile=fopen(path,"wb"))==NULL)
-	{
-	printf("\nEl archivo no puede ser abierto");
-    ret=-1;
-	}
-	size=ll_len(pArrayListEmployee);
-	 while(!feof(pFile))
-	{
-	for(i=0;i<size;i++)
-	{
-	 auxEmp=ll_get(pArrayListEmployee,i);
-	 fwrite(auxEmp,sizeof(Employee),i,pFile);
-	 }
-	if((fclose(pFile))==-1)
-	{
-	printf("\nNo se pudo cerrar el archivo");
-	ret=-2;
-	}
-	}
-	}
-return ret;
+/*
+FILE *path;
+struct  Employee;
+path=fopen(path,"wb");
+fwrite(&emp,sizeof(Employee),1,bin);
+fclose(path);
+*/
+return 0;
 }
 
 
