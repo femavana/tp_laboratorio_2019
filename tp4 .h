@@ -1,3 +1,18 @@
+//Lista dinamica de punteros
+//tipo: void* para usar todo los tipos
+
+
+LinkedList*  lista;
+
+lista=ll_newLinkedList( );
+ll_add(lista,&p);
+ll_get(lista,2);
+size=ll_len(lista);
+
+Cuando hago add crea un nodo. El nodo tiene dos espacios una para el puntero al elemento y otra para el proximo.
+
+  
+
 LinkedList* ll_newLinkedList(void);//incializador lista
 //crea y retorna una nueva lista. Es el constructor se crea la struct y se la valores inciales
 int ll_len(LinkedList* this);// retorna el tamaño de la lista
